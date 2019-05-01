@@ -1,0 +1,30 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<a [routerLink]="['/add-user']" class="btn btn-primary">Add User</a>
+<hr>
+<table class="table">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>State</th>
+        <th>Company</th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user of users">
+      <td><a [routerLink]="['/users', user.id]"><img class="profile-pic" [src]="user.profilePic"></a></td>
+      <td>{{user.firstName}} {{users.lastName}}</td>
+      <td>{{user.email}}</td>
+      <td> 
+        <p *ngIf="user.address.state==='TN'; then tennessee else other">
+        </p>
+        <ng-template #tennessee>{{user.address.state}}</ng-template>
+        <ng-template #other>OTHER: {{user.address.state}}</ng-template>
+      </td>
+      <!-- <td><a [href]="user.company.website" target="_blank">{{user.company.name}}</a></td> -->
+      <td>{{user.company?.name}}</td>
+    </tr>
+    </tbody>
+</table>
+
